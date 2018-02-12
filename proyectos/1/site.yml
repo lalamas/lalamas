@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  remote_user: proyectos
+  become: yes
+  pre_tasks:
+    - shell: echo 'I":" Comenzando la Instalación de JENKINS'
+  roles: 
+    - jenkins2
+  post_tasks:
+    - shell: echo 'I":" Finalizando la instalación de JENKINS'
