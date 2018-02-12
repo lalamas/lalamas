@@ -1,0 +1,57 @@
+---
+
+- name: config_0 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/authorizationStrategy/denyAnonymousReadAccess
+    value: 'false'
+
+- name: config_1 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/securityRealm/disableSignup
+    value: 'true'
+
+
+- name: config_2 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/securityRealm/enableCaptcha
+    value: 'false'
+
+- name: config_3 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/scmCheckoutRetryCount
+    value: '0'
+
+- name: config_4 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/quietPeriod
+    value: '5'
+
+- name: config_5 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/disabledAgentProtocols
+
+- name: config_6 jenkins
+  xml:
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/disabledAgentProtocols
+    add_children:
+       - string: 'JNLP-connect'
+       - string: 'JNLP2-connect'
+
+- name: config jenkins_7
+  replace:
+        dest: "{{ jenkins2_home }}/config.xml"
+        regexp: 'hudson.security.AuthorizationStrategy\$Unsecured'
+        replace: 'hudson.security.FullControlOnceLoggedInAuthorizationStrategy'
+
+- name: config_jenkins_8
+  xml: 
+    path: "{{ jenkins2_home }}/config.xml"
+    xpath: /hudson/noUsageStatistics
+    value: 'true'

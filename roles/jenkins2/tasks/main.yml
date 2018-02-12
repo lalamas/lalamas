@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-role-jenkins
+
+- include_tasks: "install_{{ ansible_os_family }}.yml"
+
+- include_tasks: "configure_{{ ansible_os_family }}.yml"
+
+- include_tasks: "install_plugins.yml"
+
+- include_tasks: "gitlab.yml"
+
+- include_tasks: "jenkins.yml"
+
+- name: Jenkins Service
+  service:
+   name: jenkins
+   state: started
+   enabled: yes
+  become: yes

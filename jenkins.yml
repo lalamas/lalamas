@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  vars:
+    - jenkins2_home: /home/admin/ansible_orange
+  
+  tasks: 
+#    - name: config_0 jenkins
+#      xml:
+#        path: "{{ jenkins2_home }}/config.xml"
+#        xpath: /hudson/authorizationStrategy/denyAnonymousReadAccess
+#        value: 'false'
+
+     - name: config jenkins
+       xml: 
+         path: "{{ jenkins2_home }}/config.xml"
+         xpath: /hudson/authorizationStrategy
+         value: "hudson.security.FullControlOnceLoggedInAuthorizationStrategy"
+       #replace:
+       #  dest: "{{ jenkins2_home }}/config.xml"
+       #  regexp: 'hudson.security.AuthorizationStrategy$Unsecured'
+       #  replace: 'hudson.security.FullControlOnceLoggedInAuthorizationStrategy'
+
+     - name: config_2
+       xml:
+          path: "{{ jenkins2_home }}/config.xml"
+          xpath: /hudson/authorizationStrategy
+          add_children:
+            - class: pruebas
+      
+  
