@@ -1,7 +1,0 @@
----
-# vars file for ansible-role-jenkins
-jenkins_repo_url: deb https://pkg.jenkins.io/debian binary/
-jenkins_repo_key_url: https://pkg.jenkins.io/debian/jenkins.io.key
-jenkins_pkg_url: https://pkg.jenkins.io/debian/binary
-jenkins_version: latest
-

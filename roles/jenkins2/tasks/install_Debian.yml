@@ -1,8 +1,0 @@
----
-- name: Ensure dependencies are installed.
-  apt:
-    name:
-      - jenkins
-    state: installed
-    update_cache: 'yes'
-
